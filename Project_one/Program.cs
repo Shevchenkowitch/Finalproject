@@ -1,48 +1,40 @@
-﻿Console.Write("Введите размер массива: ");
+﻿Console.WriteLine("Введите элементы массива строк (разделенные пробелом):");
+string[] input = Console.ReadLine()!.Split(' ');
+
+string[] result = FilterStrings(input);
+
+Console.WriteLine("Результат:");
+foreach (string str in result)
 {
-   {
-        int size = int.Parse(Console.ReadLine());
+    Console.WriteLine(str);
+}
 
-        string[] array = new string[size];
-        Console.WriteLine("Введите элементы массива:");
 
-        for (int i = 0; i < size; i++)
-        {
-            Console.Write($"Элемент {i + 1}: ");
-            array[i] = Console.ReadLine();
-        }
-
-        string[] newArray = FilterArray(array);
-
-        Console.WriteLine("\nНовый массив с длиной строк <= 3:");
-        for (int i = 0; i < newArray.Length; i++)
-        {
-            Console.WriteLine(newArray[i]);
-        }
-    }
-
-    static string[] FilterArray(string[] array)
+static string[] FilterStrings(string[] strings)
+{
+    int count = 0;
+    
+    foreach (string str in strings)
     {
-        int count = 0;
-        for (int i = 0; i < array.Length; i++)
+        if (str.Length <= 3)
         {
-            if (array[i].Length <= 3)
-            {
-                count++;
-            }
+            count++;
         }
-
-        string[] filteredArray = new string[count];
-        int index = 0;
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i].Length <= 3)
-            {
-                filteredArray[index] = array[i];
-                index++;
-            }
-        }
-
-        return filteredArray;
     }
+
+    
+    string[] result = new string[count];
+
+    int index = 0;
+    
+    foreach (string str in strings)
+    {
+        if (str.Length <= 3)
+        {
+            result[index] = str;
+            index++;
+        }
+    }
+
+    return result;
 }

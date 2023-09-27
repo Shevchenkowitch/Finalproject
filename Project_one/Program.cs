@@ -1,40 +1,63 @@
-﻿Console.WriteLine("Введите элементы массива строк (разделенные пробелом):");
-string[] input = Console.ReadLine()!.Split(' ');
-
-string[] result = FilterStrings(input);
-
-Console.WriteLine("Результат:");
-foreach (string str in result)
+﻿
+void FillArray(string[] array)
 {
-    Console.WriteLine(str);
+    string[] array1 = { "hello", "2", "world", ":-)" };
+    string[] array2 = { "1234", "1567", "-2", "computer science" };
+    string[] array3 = { "Russia", "Denmark", "Kazan" };
+
+    string[][] matrix = new string[][] { array1, array2, array3 };
+
+
+    for (int i = 0; i < matrix.Length; i++)
+    {
+       
+        int length_array = GetLengthArray(GetArrayLimitLength(matrix[i]));
+        PrintArray(GetResArray(GetArrayLimitLength(matrix[i]), length_array));
+        
+    }
+
+
+    string[] GetArrayLimitLength(string[] arr)
+    {
+        string[] res = new string[arr.Length];
+        int j = 0;
+        for (int i = 0; i < arr.Length; i++)
+        {
+            if (arr[i].Length <= 3)
+            {
+                res[j] = arr[i];
+                j++;
+            }
+        }
+        return res;
+    }
+}
+
+void PrintArray(string[] strings)
+{
+    throw new NotImplementedException();
+}
+
+int GetLengthArray(string[] arr)
+{
+    int cnt = 0;
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (arr[i] != null) cnt++;
+    }
+    return cnt;
 }
 
 
-static string[] FilterStrings(string[] strings)
+string[] GetResArray(string[] arr, int length)
 {
-    int count = 0;
-    
-    foreach (string str in strings)
+    string[] res = new string[length];
+    for (int i = 0; i < length; i++)
     {
-        if (str.Length <= 3)
-        {
-            count++;
-        }
+        res[i] = arr[i];
     }
-
-    
-    string[] result = new string[count];
-
-    int index = 0;
-    
-    foreach (string str in strings)
-    {
-        if (str.Length <= 3)
-        {
-            result[index] = str;
-            index++;
-        }
-    }
-
-    return result;
+    return res;
 }
+
+FillArray(array1);
+
